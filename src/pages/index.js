@@ -68,7 +68,7 @@ export default function Home() {
 
     try {
       setIsLoading(true);
-      await api.post("/clients", { name, email });
+      setClients(await api.post("/clients", { name, email }))
       setName("");
       setEmail("");
       setId(null)
@@ -89,7 +89,7 @@ export default function Home() {
   const handleDeleteClient = async (_id) => {
     try {
 
-      await api.delete(`/clients/${_id}`);
+      setClients(await api.delete(`/clients/${_id}`))
       toast({
         title: "Deletado com sucesso!!",
         status: "info",
@@ -115,7 +115,7 @@ export default function Home() {
 
     try {
       setIsLoading(true);
-      await api.put(`/clients/${id}`, { name, email });
+      setClients(await api.put(`/clients/${id}`, { name, email }))
       setName("");
       setEmail("");
       setId(null)
