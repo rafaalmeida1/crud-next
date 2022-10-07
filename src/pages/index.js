@@ -192,8 +192,8 @@ export default function Home() {
                   <Td>{client.email}</Td>
                   <Td justifyContent="space-between">
                     <Flex>
-                      <Button size="sm" fontSize="small" colorScheme="yellow" mr="2" onClick={() => handleShowUpdateClient(client)}>Editar</Button>
-                      <Button size="sm" fontSize="small" colorScheme="red" mr="2" onClick={() => handleDeleteClient(client._id)}>Remover</Button>
+                      <Button size="sm" fontSize="small" colorScheme="yellow" mr="2" onClick={() => handleShowUpdateClient(client) && setClients(client)}>Editar</Button>
+                      <Button size="sm" fontSize="small" colorScheme="red" mr="2" onClick={() => handleDeleteClient(client._id) && setClients(client)}>Remover</Button>
                     </Flex>
                   </Td>
                 </Tr>
