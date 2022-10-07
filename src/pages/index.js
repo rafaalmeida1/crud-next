@@ -27,7 +27,7 @@ export default function Home() {
   const [search, setSearch] = useState('');
   const toast = useToast();
 
-  const filteredRepos = search.length > 0
+  const filteredClients = search.length > 0
     ? clients.filter( client => client.name.includes(search))
     : [];
 
@@ -192,7 +192,7 @@ export default function Home() {
               </Tr>
             </Thead>
             <Tbody>
-              {filteredRepos.map((client, index) => (
+              {filteredClients.map((client, index) => (
                 <Tr key={index}>
                   <Td>{client.name}</Td>
                   <Td>{client.email}</Td>
