@@ -24,7 +24,12 @@ export default function Home() {
   const [clients, setClients] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = useState('');
   const toast = useToast();
+
+  const filteredRepos = search.length > 0
+    ? clients.filter( client => client.name.includes(search))
+    : [];
 
   useEffect(() => {
     api.get("/clients").then(({ data }) => {
@@ -178,6 +183,7 @@ export default function Home() {
           ) : null}
 
           <Table variant="simple" mt={16}>
+            <Input name="search" type="text" placeholder="Buscar..." onChange={e => setSearch(e.target.value)}/>
             <Thead bg="teal.500">
               <Tr>
                 <Th textColor="white">Nome</Th>
@@ -186,7 +192,7 @@ export default function Home() {
               </Tr>
             </Thead>
             <Tbody>
-              {clients.map((client, index) => (
+              {filteredRepos.map((client, index) => (
                 <Tr key={index}>
                   <Td>{client.name}</Td>
                   <Td>{client.email}</Td>
