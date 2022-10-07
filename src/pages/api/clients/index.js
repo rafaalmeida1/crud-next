@@ -10,6 +10,8 @@ export default async function handler(req, res) {
         case "GET":
             try {
                 const clients = await Client.find({});
+                res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Cache-Control', 'max-age=180000')
                 res.status(200).json({ sucess: true, data: clients })
             } catch (err) {
                 console.log(err)
@@ -22,6 +24,8 @@ export default async function handler(req, res) {
                 const { name, email } = req.body
                 if (!name, !email) throw "invalid data"
                 const client = await Client.create({name, email})
+                res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Cache-Control', 'max-age=180000')
                 res.status(201).json({ sucess: true, data: client })                
             } catch (err) {
                 console.log(err)

@@ -13,6 +13,8 @@ export default async function handler(req, res) {
                 const { name, email } = req.body
                 if (!name, !email) throw "invalid data"
                 await Client.updateOne({ _id: ClientID }, { name, email })
+                res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Cache-Control', 'max-age=180000')
                 res.status(200).json({ sucess: true })
             } catch (err) {
                 console.log(err)
@@ -23,6 +25,8 @@ export default async function handler(req, res) {
         case "DELETE":
             try {
                 await Client.deleteOne({_id:ClientID})
+                res.setHeader('Content-Type', 'application/json');
+                res.setHeader('Cache-Control', 'max-age=180000')
                 res.status(201).json({ sucess: true})
             } catch (err) {
                 console.log(err)
