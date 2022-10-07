@@ -18,4 +18,4 @@ const headers = async () => {
   ]
 }
 
-module.exports = nextConfig
+module.exports = {nextConfig, headers}
